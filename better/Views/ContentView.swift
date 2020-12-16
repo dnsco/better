@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name_, ascending: true)],
         animation: .default
     )
     private var activities: FetchedResults<Activity>
@@ -24,7 +24,7 @@ struct ContentView: View {
             List {
                 ForEach(activities) { activity in
                     NavigationLink(destination: ActivityDetail(activity: activity)) {
-                        Text("\(activity.name!)")
+                        Text("\(activity.name)")
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -33,10 +33,12 @@ struct ContentView: View {
                     self.addActivity(name: title)
                     self.isPresented.toggle()
                 }
-            }.navigationBarItems(trailing:
+            }.navigationBarItems(
+                trailing:
                 Button(action: { self.isPresented.toggle() }) {
                     Label("Add Activity", systemImage: "plus")
-                })
+                }
+            )
         }
     }
 

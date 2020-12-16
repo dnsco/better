@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct ActivityDetail: View {
-    let activity: Activity
+    @ObservedObject var activity: Activity
+    @State var isShowingEdit: Bool = false
     var body: some View {
-        Text("\(activity.name!)").navigationBarTitle(activity.name!, displayMode: .inline)
+        Text("\(activity.name)")
+            .sheet(isPresented: $isShowingEdit, content: {
+                NavigationView {
+                    EditActivity(activity: .constant(activity), isShowingEdit: $isShowingEdit)
+                        .navigationBarItems(leading: Button("Cancel") {
+                            isShowingEdit = false
+                        })
+                }
+
+            })
+            .navigationBarTitle(activity.name, displayMode: .inline)
+            .navigationBarItems(trailing:
+                Button(action: { self.isShowingEdit.toggle() }) {
+                    Text("Edit")
+                })
     }
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9538C04C258A7B320004C635 /* ActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C04B258A7B320004C635 /* ActivityDetail.swift */; };
+		9538C051258AC0720004C635 /* Activity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C050258AC0720004C635 /* Activity+Extensions.swift */; };
 		95A50BF3258986EB0001362F /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A50BF2258986EB0001362F /* EditActivity.swift */; };
 		95A50BFA2589C4C00001362F /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A50BF92589C4C00001362F /* AddActivity.swift */; };
 		95C8DF5525894AA100FE4742 /* betterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8DF5425894AA100FE4742 /* betterApp.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		9538C04B258A7B320004C635 /* ActivityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetail.swift; sourceTree = "<group>"; };
+		9538C050258AC0720004C635 /* Activity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Extensions.swift"; sourceTree = "<group>"; };
 		95A50BF2258986EB0001362F /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
 		95A50BF92589C4C00001362F /* AddActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivity.swift; sourceTree = "<group>"; };
 		95C8DF5125894AA100FE4742 /* better.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = better.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				95C8DF5D25894AA900FE4742 /* Persistence.swift */,
+				9538C050258AC0720004C635 /* Activity+Extensions.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				95C8DF6125894AA900FE4742 /* better.xcdatamodeld in Sources */,
 				9538C04C258A7B320004C635 /* ActivityDetail.swift in Sources */,
 				95A50BFA2589C4C00001362F /* AddActivity.swift in Sources */,
+				9538C051258AC0720004C635 /* Activity+Extensions.swift in Sources */,
 				95A50BF3258986EB0001362F /* EditActivity.swift in Sources */,
 				95C8DF5725894AA100FE4742 /* ContentView.swift in Sources */,
 				95C8DF5525894AA100FE4742 /* betterApp.swift in Sources */,
