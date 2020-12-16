@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9538C04C258A7B320004C635 /* ActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C04B258A7B320004C635 /* ActivityDetail.swift */; };
 		95A50BF3258986EB0001362F /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A50BF2258986EB0001362F /* EditActivity.swift */; };
 		95A50BFA2589C4C00001362F /* AddActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A50BF92589C4C00001362F /* AddActivity.swift */; };
 		95C8DF5525894AA100FE4742 /* betterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C8DF5425894AA100FE4742 /* betterApp.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9538C04B258A7B320004C635 /* ActivityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetail.swift; sourceTree = "<group>"; };
 		95A50BF2258986EB0001362F /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
 		95A50BF92589C4C00001362F /* AddActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivity.swift; sourceTree = "<group>"; };
 		95C8DF5125894AA100FE4742 /* better.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = better.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 				95C8DF5625894AA100FE4742 /* ContentView.swift */,
 				95A50BF2258986EB0001362F /* EditActivity.swift */,
 				95A50BF92589C4C00001362F /* AddActivity.swift */,
+				9538C04B258A7B320004C635 /* ActivityDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			files = (
 				95C8DF5E25894AA900FE4742 /* Persistence.swift in Sources */,
 				95C8DF6125894AA900FE4742 /* better.xcdatamodeld in Sources */,
+				9538C04C258A7B320004C635 /* ActivityDetail.swift in Sources */,
 				95A50BFA2589C4C00001362F /* AddActivity.swift in Sources */,
 				95A50BF3258986EB0001362F /* EditActivity.swift in Sources */,
 				95C8DF5725894AA100FE4742 /* ContentView.swift in Sources */,

@@ -15,15 +15,17 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name, ascending: true)],
         animation: .default
     )
-    private var items: FetchedResults<Activity>
+    private var activities: FetchedResults<Activity>
 
     @State var isPresented = false
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
-                    Text("Item at \(item.name!)")
+                ForEach(activities) { activity in
+                    NavigationLink(destination: ActivityDetail(activity: activity)) {
+                        Text("\(activity.name!)")
+                    }
                 }
                 .onDelete(perform: deleteItems)
             }.sheet(isPresented: $isPresented) {
@@ -54,7 +56,9 @@ struct ContentView: View {
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map {
+                activities[$0]
+            }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
