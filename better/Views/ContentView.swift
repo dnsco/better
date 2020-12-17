@@ -9,7 +9,7 @@ import CoreData
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var moc
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name_, ascending: true)],
@@ -43,11 +43,11 @@ struct ContentView: View {
     }
 
     private func addActivity(name: String) {
-        let newActivity = Activity(context: viewContext)
+        let newActivity = Activity(context: moc)
         newActivity.name = name
 
         do {
-            try viewContext.save()
+            try moc.save()
         } catch {
             // Replace this implementation with code to handle the error appropriately.
             // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -60,10 +60,10 @@ struct ContentView: View {
         withAnimation {
             offsets.map {
                 activities[$0]
-            }.forEach(viewContext.delete)
+            }.forEach(moc.delete)
 
             do {
-                try viewContext.save()
+                try moc.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.

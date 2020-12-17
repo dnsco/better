@@ -9,34 +9,13 @@ import SwiftUI
 
 struct EditActivity: View {
     @Environment(\.presentationMode) var presentationMode
-
-//
-//    struct ActivityProps {
-//        var name: String
-//
-//        init(name: String?) {
-//            self.name = name ?? "New Activity"
-//        }
-//
-//    }
     @Binding var activity: Activity
     @Binding var isShowingEdit: Bool
-    @State var name: String = ""
-
-    init(activity: Binding<Activity>, isShowingEdit: Binding<Bool>) {
-        _activity = activity
-        _isShowingEdit = isShowingEdit
-        _name = State(wrappedValue: self.activity.name)
-    }
 
     var body: some View {
         return VStack {
-            TextField("Name", text: $name, onEditingChanged: { _ in self.activity.name = self.name })
-            Button(action: {
-                self.isShowingEdit = false
-//                    self.presentationMode.wrappedValue.dismiss()
-            }
-            ) { Text("Save") }
+            TextField("Name", text: $activity.name)
+            Button(action: { self.isShowingEdit = false }) { Text("Save") }
         }
     }
 }
