@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct ActivityDetail: View {
+    @Environment(\.managedObjectContext) private var moc
+
     @ObservedObject var activity: Activity
     @State var isShowingEdit: Bool = false
     var body: some View {
-        Text("\(activity.name)")
+        Text("Activities go here lol")
             .sheet(isPresented: $isShowingEdit, content: {
                 NavigationView {
                     EditActivity(activity: .constant(activity), isShowingEdit: $isShowingEdit)
-                        .navigationBarItems(leading: Button("Cancel") {
-                            isShowingEdit = false
-                        })
+                        .navigationBarItems(
+                            leading: Button("Cancel") {
+                                moc.rollback()
+                                isShowingEdit = false
+                            })
                 }
 
             })
@@ -36,6 +40,6 @@ struct ActivityDetail_Previews: PreviewProvider {
         return NavigationView {
             ActivityDetail(activity: activity)
             Spacer()
-        }
+        }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

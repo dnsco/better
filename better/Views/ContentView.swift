@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var moc
-
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name_, ascending: true)],
         animation: .default
