@@ -8,28 +8,27 @@
 import SwiftUI
 
 struct ActivityDetail: View {
-    @Environment(\.managedObjectContext) private var moc
-
     @ObservedObject var activity: Activity
-    @State var isShowingEdit: Bool = false
-    var body: some View {
-        Text("Activities go here lol")
-            .sheet(isPresented: $isShowingEdit, content: {
-                NavigationView {
-                    EditActivity(activity: .constant(activity), isShowingEdit: $isShowingEdit)
-                        .navigationBarItems(
-                            leading: Button("Cancel") {
-                                moc.rollback()
-                                isShowingEdit = false
-                            })
-                }
+    @Binding var focusedActivity: Activity?
 
-            })
-            .navigationBarTitle(activity.name, displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button(action: { self.isShowingEdit.toggle() }) {
-                    Text("Edit")
+    @State var showEditSheet: Bool = false
+
+    var body: some View {
+        self.focusedActivity.map { _ in
+            Text("Activities go here lol")
+                .sheet(isPresented: $showEditSheet, content: {
+                    EditActivity(
+                        activity: .constant(activity),
+                        showEditSheet: $showEditSheet,
+                        focusedActivity: $focusedActivity
+                    )
                 })
+                .navigationBarTitle(activity.name, displayMode: .inline)
+                .navigationBarItems(trailing:
+                    Button(action: { self.showEditSheet.toggle() }) {
+                        Text("Edit")
+                    })
+        }
     }
 }
 
@@ -38,7 +37,10 @@ struct ActivityDetail_Previews: PreviewProvider {
         let activity = Activity(context: PersistenceController.preview.container.viewContext)
         activity.name = "Meditate"
         return NavigationView {
-            ActivityDetail(activity: activity)
+            ActivityDetail(
+                activity: activity,
+                focusedActivity: .constant(activity)
+            )
             Spacer()
         }.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }

@@ -9,24 +9,43 @@ import SwiftUI
 
 struct EditActivity: View {
     @Environment(\.managedObjectContext) private var moc
-    @Environment(\.presentationMode) var presentationMode
     @Binding var activity: Activity
-    @Binding var isShowingEdit: Bool
+    @Binding var showEditSheet: Bool
+    @Binding var focusedActivity: Activity?
 
     var body: some View {
-        return VStack {
-            Form {
-                TextField("Name", text: $activity.name)
-            }
-            Button(action: {
-                do {
-                    try moc.save()
-                } catch {
-                    fatalError("Can't update")
+        NavigationView {
+            VStack {
+                Form {
+                    TextField("Name", text: $activity.name)
                 }
-                self.isShowingEdit = false
-            }) { Text("Save") }
-        }.navigationBarTitle("Edit Activity", displayMode: .inline)
+                Spacer()
+                Button(action: {
+                    print("yaaaasss")
+                    self.showEditSheet = false
+                    self.focusedActivity = nil
+                    moc.delete(self.activity)
+                    try? moc.save()
+//                    self.showDetailPage = false
+                    print("I exectute")
+
+                }) { Text("Deletelol") }
+            }.navigationBarTitle("Edit Activity", displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button("Cancel") {
+                        moc.rollback()
+                        showEditSheet = false
+                    },
+                    trailing: Button("Save") {
+                        do {
+                            try moc.save()
+                        } catch {
+                            fatalError("Can't update")
+                        }
+                        self.showEditSheet = false
+                    }
+                )
+        }
     }
 }
 
@@ -34,8 +53,14 @@ struct EditActivity_Previews: PreviewProvider {
     static var previews: some View {
         let activity = Activity(context: PersistenceController.preview.container.viewContext)
         activity.name = "Meditate"
+
         return NavigationView {
-            EditActivity(activity: .constant(activity), isShowingEdit: .constant(true)).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            EditActivity(
+                activity: .constant(activity),
+                showEditSheet: .constant(true),
+                focusedActivity: .constant(activity)
+            )
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

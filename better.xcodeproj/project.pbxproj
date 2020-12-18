@@ -93,10 +93,18 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		95517FF6258B2DBC0063D868 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		95A50BFE2589CDD80001362F /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				95C8DF5625894AA100FE4742 /* ContentView.swift */,
+				95517FF6258B2DBC0063D868 /* New Group */,
 				95A50BF2258986EB0001362F /* EditActivity.swift */,
 				95A50BF92589C4C00001362F /* AddActivity.swift */,
 				9538C04B258A7B320004C635 /* ActivityDetail.swift */,

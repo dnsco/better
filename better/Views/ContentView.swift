@@ -10,49 +10,58 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var moc
+
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name_, ascending: true)],
         animation: .default
     )
     private var activities: FetchedResults<Activity>
 
-    @State var isPresented = false
+    @State var focusedActivity: Activity?
+    @State var showAddSheet = false
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(activities) { activity in
-                    NavigationLink(destination: ActivityDetail(activity: activity)) {
-                        Text("\(activity.name)")
-                    }
+            VStack {
+                List {
+                    ForEach(activities) { activity in
+                        Button(action: { self.focusedActivity = activity }) { Text(activity.name) }
+                    }.onDelete(perform: deleteItems)
                 }
-                .onDelete(perform: deleteItems)
-            }.sheet(isPresented: $isPresented) {
+
+                ForEach(activities) { activity in
+                    NavigationLink(
+                        destination: ActivityDetail(
+                            activity: activity,
+                            focusedActivity: $focusedActivity
+                        ),
+                        tag: activity,
+                        selection: $focusedActivity
+
+                    ) { EmptyView() }.isDetailLink(false)
+                }
+
+            }.sheet(isPresented: $showAddSheet) {
                 AddActivity { title in
                     self.addActivity(name: title)
-                    self.isPresented.toggle()
+                    self.showAddSheet.toggle()
                 }
             }.navigationBarItems(
                 trailing:
-                Button(action: { self.isPresented.toggle() }) {
+                Button(action: { self.showAddSheet.toggle() }) {
                     Label("Add Activity", systemImage: "plus")
                 }
-            )
+            ).navigationViewStyle(StackNavigationViewStyle())
         }
+
+        .environment(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Key Path@*/ \.sizeCategory/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/ .extraExtraLarge/*@END_MENU_TOKEN@*/)
     }
 
     private func addActivity(name: String) {
         let newActivity = Activity(context: moc)
         newActivity.name = name
 
-        do {
-            try moc.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        try? moc.save()
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -61,14 +70,7 @@ struct ContentView: View {
                 activities[$0]
             }.forEach(moc.delete)
 
-            do {
-                try moc.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+            try? moc.save()
         }
     }
 }
