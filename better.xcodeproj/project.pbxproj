@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950FB615258D7C7400C7592F /* ActivityCompletion+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950FB614258D7C7400C7592F /* ActivityCompletion+Extensions.swift */; };
 		9538C04C258A7B320004C635 /* ActivityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C04B258A7B320004C635 /* ActivityDetail.swift */; };
 		9538C051258AC0720004C635 /* Activity+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9538C050258AC0720004C635 /* Activity+Extensions.swift */; };
 		95A50BF3258986EB0001362F /* EditActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A50BF2258986EB0001362F /* EditActivity.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		950FB614258D7C7400C7592F /* ActivityCompletion+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivityCompletion+Extensions.swift"; sourceTree = "<group>"; usesTabs = 0; };
 		9538C04B258A7B320004C635 /* ActivityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetail.swift; sourceTree = "<group>"; };
 		9538C050258AC0720004C635 /* Activity+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity+Extensions.swift"; sourceTree = "<group>"; };
 		95A50BF2258986EB0001362F /* EditActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivity.swift; sourceTree = "<group>"; };
@@ -87,8 +89,10 @@
 		9538C04A2589E00F0004C635 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				95C8DF5F25894AA900FE4742 /* better.xcdatamodeld */,
 				95C8DF5D25894AA900FE4742 /* Persistence.swift */,
 				9538C050258AC0720004C635 /* Activity+Extensions.swift */,
+				950FB614258D7C7400C7592F /* ActivityCompletion+Extensions.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -136,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				95C8DF5425894AA100FE4742 /* betterApp.swift */,
-				95C8DF5F25894AA900FE4742 /* better.xcdatamodeld */,
 				9538C04A2589E00F0004C635 /* Data */,
 				95A50BFE2589CDD80001362F /* Views */,
 				95C8DF5825894AA900FE4742 /* Assets.xcassets */,
@@ -304,6 +307,7 @@
 				95C8DF5E25894AA900FE4742 /* Persistence.swift in Sources */,
 				95C8DF6125894AA900FE4742 /* better.xcdatamodeld in Sources */,
 				9538C04C258A7B320004C635 /* ActivityDetail.swift in Sources */,
+				950FB615258D7C7400C7592F /* ActivityCompletion+Extensions.swift in Sources */,
 				95A50BFA2589C4C00001362F /* AddActivity.swift in Sources */,
 				9538C051258AC0720004C635 /* Activity+Extensions.swift in Sources */,
 				95A50BF3258986EB0001362F /* EditActivity.swift in Sources */,

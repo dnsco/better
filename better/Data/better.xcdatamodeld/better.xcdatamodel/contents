@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Activity" representedClassName="Activity" syncable="YES" codeGenerationType="class">
+        <attribute name="name_" optional="YES" attributeType="String"/>
+        <relationship name="completions_" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ActivityCompletion" inverseName="activity" inverseEntity="ActivityCompletion"/>
+    </entity>
+    <entity name="ActivityCompletion" representedClassName="ActivityCompletion" syncable="YES" codeGenerationType="class">
+        <attribute name="done_at_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="activity" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Activity" inverseName="completions_" inverseEntity="Activity"/>
+    </entity>
+    <elements>
+        <element name="Activity" positionX="-1438.432678222656" positionY="-6922.645446777344" width="120.7599487304688" height="73"/>
+        <element name="ActivityCompletion" positionX="-1442.1416015625" positionY="-6799.402221679688" width="128" height="28"/>
+    </elements>
+</model>
