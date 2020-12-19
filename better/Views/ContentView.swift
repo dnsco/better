@@ -12,7 +12,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var moc
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Activity.name_, ascending: true)],
+        sortDescriptors: [],
         animation: .default
     )
     private var activities: FetchedResults<Activity>
@@ -24,7 +24,9 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(activities) { activity in
+                    ForEach(activities.sorted {
+                        $0.last_done_at < $1.last_done_at
+                    }) { activity in
                         Button(action: { self.focusedActivity = activity }) { Text(activity.name) }
                     }.onDelete(perform: deleteItems)
                 }

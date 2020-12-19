@@ -21,14 +21,10 @@ struct EditActivity: View {
                 }
                 Spacer()
                 Button(action: {
-                    print("yaaaasss")
                     self.showEditSheet = false
                     self.focusedActivity = nil
                     moc.delete(self.activity)
                     try? moc.save()
-//                    self.showDetailPage = false
-                    print("I exectute")
-
                 }) { Text("Deletelol") }
             }.navigationBarTitle("Edit Activity", displayMode: .inline)
                 .navigationBarItems(

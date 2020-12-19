@@ -16,9 +16,12 @@ extension Activity {
     }
 
     var completions: [ActivityCompletion] {
-        let set = completions_?.sortedArray(using: [NSSortDescriptor(key: "done_at_", ascending: true)]) as? [ActivityCompletion] ?? []
-        return set.sorted {
-            $0.done_at < $1.done_at
-        }
+        completions_?.sortedArray(
+            using: [NSSortDescriptor(key: "done_at_", ascending: false)]
+        ) as? [ActivityCompletion] ?? []
+    }
+
+    var last_done_at: Date {
+        completions.first?.done_at ?? Date(timeIntervalSince1970: 0)
     }
 }
